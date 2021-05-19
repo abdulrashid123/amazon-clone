@@ -1,4 +1,4 @@
-import { ADD_BASKET, REMOVE_FROM_BASKET, SET_USER } from "./basketTypes";
+import { ADD_BASKET, EMPTY_BASKET, REMOVE_FROM_BASKET, SET_USER } from "./basketTypes";
 
 const initialState = {
     basketList:[],
@@ -30,6 +30,8 @@ const basketReducer = (state=initialState, action) => {
         ...state,
         basketList: newBasket
       }
+    case EMPTY_BASKET:
+      return {...state,basketList:[]}
     case SET_USER:
       return {...state,user:action.payload}
     default:

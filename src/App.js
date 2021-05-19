@@ -8,8 +8,17 @@ import {useEffect} from 'react'
 import { auth } from './firebase';
 import { setUser } from './redux';
 import { connect } from 'react-redux';
+import Payment from './component/Payment';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements, useElements, useStripe } from '@stripe/react-stripe-js';
+import Orders from './component/Orders';
+
+
+const promise = loadStripe('pk_test_51H3IGGBENlFIyNJ36QtBplI3ilRDkx1UAoejPBD0nbZLcdzstjWRrdTIVBgsFuoNQEtvnsyt5ykmc671DCGjrXHc00XhImfjuQ')
+
 
 function App({setUser}) {
+
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       console.log("THE USER IS >>> ", authUser);
@@ -37,6 +46,17 @@ function App({setUser}) {
           </Route>
           <Route path="/login">
             <Login/>
+          </Route>
+          <Route path="/payment">
+          <Header/>
+          <Elements stripe={promise}>
+              {/* <Payment stripe={stripe} elements={elements}/> */}
+             <Payment/>
+          </Elements>
+            
+          </Route>
+          <Route exact path="/orders">
+            <Orders/>
           </Route>
         </Switch>
       </div>

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './SubTotal.css'
 import CurrencyFormat from "react-currency-format";
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 export class SubTotal extends Component {
     constructor(props) {
         super(props)
@@ -42,7 +43,7 @@ export class SubTotal extends Component {
                             prefix={"$"}
                         />
 
-                        <button>Proceed to Checkout</button>
+                        <button onClick={e => this.props.basket?.length>0 && this.props.history?.push('/payment')}>Proceed to Checkout</button>
             </div>
         )
     }
@@ -54,4 +55,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(SubTotal)
+export default withRouter(connect(mapStateToProps)(SubTotal))

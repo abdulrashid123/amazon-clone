@@ -1,5 +1,5 @@
 
-import { ADD_BASKET, REMOVE_FROM_BASKET, SET_USER } from "./basketTypes"
+import { ADD_BASKET, EMPTY_BASKET, REMOVE_FROM_BASKET, SET_USER } from "./basketTypes"
 
 export const addToBasket = (item) => {
     return {
@@ -21,6 +21,12 @@ export const addUser = (user) => {
     }
 }
 
+export const emptyBasket = () => {
+    return {
+        type:EMPTY_BASKET
+    }
+}
+
 export const addBasket = (item) => {
     console.log("adding to basket")
     return (dispatch) => {
@@ -37,6 +43,14 @@ export const setUser = (user) => {
     console.log("adding user")
     return (dispatch) => {
         dispatch(addUser(user))
+    }
+
+}
+
+export const clearBasket = () => {
+    console.log("Emptying Basket ")
+    return (dispatch) => {
+        dispatch(emptyBasket())
     }
 
 }
